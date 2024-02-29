@@ -1,0 +1,7 @@
+net\skirmishes\firstplugin\listeners\InventoryListener.class
+net\skirmishes\firstplugin\Core.class
+net\skirmishes\firstplugin\listeners\PlayerChatListener.class
+net\skirmishes\firstplugin\managers\GUICreator.class
+net\skirmishes\firstplugin\commands\FirstPluginCommand.class
+net\skirmishes\firstplugin\managers\ItemBuilder.class
+net\skirmishes\firstplugin\listeners\JoinListener.class

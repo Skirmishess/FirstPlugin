@@ -1,0 +1,13 @@
+Items:
+  1:
+    Material: "COMPASS"
+    Damage: 0
+    Display: "&c&lServer Selector"
+    Slot: 40
+    Lore: []
+  2:
+    Material: "FEATHER"
+    Damage: 0
+    Display: "&c&lCosmtics"
+    Slot: 36
+    Lore: []

@@ -1,0 +1,27 @@
+name: FirstPlugin
+version: '1.0'
+main: net.skirmishes.firstplugin.Core
+api-version: 1.8
+author: Skirmishes
+
+commands:
+  firstplugin:
+    description: Main command for my first plugin.
+    aliases: [fp, test]
+  secondplugin:
+    description: Main command for my second plugin.
+    aliases: [sp, test2]
+
+permissions:
+  firstplugin.use:
+    description: Access to the plugin itself.
+    default: op
+  firstplugin.command:
+    description: Access to run command.
+    default: op
+  firstplugin.*:
+    description: Access to all features.
+    default: op
+    children:
+      firstplugin.use: true
+      firstplugin.command: true

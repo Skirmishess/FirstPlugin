@@ -1,0 +1,76 @@
+GUI:
+  Rows: 3
+  Title: "&aTest"
+  Items:
+    BORDER:
+      Material: "STAINED_GLASS_PANE"
+      Damage: 7
+      Display: "&7"
+      Slots:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 11
+        - 13
+        - 15
+        - 17
+        - 18
+        - 19
+        - 21
+        - 22
+        - 23
+        - 24
+        - 25
+        - 26
+        - 27
+        - 28
+        - 29
+      Lore:
+        - "&r"
+        - "&7Border item"
+    1:
+      Material: "STAINED_GLASS_PANE"
+      Damage: 14
+      Display: "&c&lTeleport"
+      Slot: 10
+      Lore:
+        - "&r"
+        - "&7Teleport to my Skirmishes Plot."
+    2:
+      Material: "STAINED_GLASS_PANE"
+      Damage: 14
+      Display: "&c&lText"
+      Slot: 12
+      Lore:
+        - "&r"
+        - "&7Look in chat."
+    3:
+      Material: "STAINED_GLASS_PANE"
+      Damage: 14
+      Display: "&c&lCheck Exp"
+      Slot: 14
+      Lore:
+        - "&r"
+        - "&7Make it rain XP."
+    4:
+      Material: "STAINED_GLASS_PANE"
+      Damage: 14
+      Display: "&c&lSet Gamemode"
+      Slot: 16
+      Lore:
+        - "&r"
+        - "&7Bob the Builder!"
+    5:
+      Material: "STAINED_GLASS_PANE"
+      Damage: 14
+      Display: "&c&lWhat could this be?"
+      Slot: 20
+      Lore:
+        - "&r"
+        - "&7HEHEHE"
