@@ -3,11 +3,11 @@ Items:
     Material: "COMPASS"
     Damage: 0
     Display: "&c&lServer Selector"
-    Slot: 40
+    Slot: 4
     Lore: []
   2:
     Material: "FEATHER"
     Damage: 0
     Display: "&c&lCosmtics"
-    Slot: 36
+    Slot: 0
     Lore: []

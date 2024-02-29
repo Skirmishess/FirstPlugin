@@ -2,6 +2,7 @@ package net.skirmishes.firstplugin.listeners;
 
 import de.tr7zw.nbtapi.NBTItem;
 import net.skirmishes.firstplugin.Core;
+import net.skirmishes.firstplugin.managers.ServerSelectorCreator;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -34,47 +35,13 @@ public class InventoryListener implements Listener
 
             if (nbtItem.getBoolean("isServerSelector"))
             {
-                Location location = new Location(Bukkit.getWorld("Cannon"), -639, 3, -618);
-                player.teleport(location);
+                ServerSelectorCreator.createGUI(player);
+                return;
             }
             if (nbtItem.getBoolean("isCosmtics"))
             {
-                Location location = new Location(Bukkit.getWorld("Cannon"), -639, 3, -618);
-                player.teleport(location);
+                return;
             }
-        }
-
-        if (!event.getView().getTitle().equals(Core.cc(Core.plugin.configFile.getString("GUI.Title")))) return;
-
-        event.setCancelled(true);
-        if (event.getCurrentItem() == null) return;
-        if (event.getCurrentItem().getItemMeta() == null) return;
-        if (event.getCurrentItem().getItemMeta().getDisplayName() == null) return;
-
-        NBTItem nbtItem = new NBTItem(event.getCurrentItem());
-
-        if (nbtItem.getBoolean("isTeleportItem"))
-        {
-            Location location = new Location(Bukkit.getWorld("Cannon"), -639, 3, -618);
-            player.teleport(location);
-        }
-        if (nbtItem.getBoolean("isTextFile"))
-        {
-            player.sendMessage(Core.cc(Core.plugin.langFile.getString("Prefix")+" &c&lYou wish you were sexy."));
-        }
-        if (nbtItem.getBoolean("isGiveItem"))
-        {
-            player.giveExpLevels(30);
-        }
-        if (nbtItem.getBoolean("isSetGamemode"))
-        {
-            player.setGameMode(GameMode.CREATIVE);
-            player.sendMessage(Core.cc(Core.plugin.langFile.getString("Prefix")+" &7Gamemode has been updated."));
-        }
-        if (nbtItem.getBoolean("isKickPlayer"))
-        {
-            player.kickPlayer(" &c&lGET FUCKED NERD. HAHA LEARN TO NOT GET KICKED FUCKER");
-            player.sendMessage(Core.cc(Core.plugin.langFile.getString("Prefix")+" &7Gamemode has been updated."));
         }
     }
 }

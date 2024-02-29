@@ -6,7 +6,9 @@ GUI:
       Material: "STAINED_GLASS_PANE"
       Damage: 7
       Display: "&7"
+      Fill: true
       Slots:
+        - 0
         - 1
         - 2
         - 3
@@ -28,9 +30,6 @@ GUI:
         - 24
         - 25
         - 26
-        - 27
-        - 28
-        - 29
       Lore:
         - "&r"
         - "&7Border item"

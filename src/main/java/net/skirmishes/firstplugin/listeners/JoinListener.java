@@ -1,6 +1,7 @@
 package net.skirmishes.firstplugin.listeners;
 
 import net.skirmishes.firstplugin.managers.GUICreator;
+import net.skirmishes.firstplugin.managers.JoinItems;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,6 +14,9 @@ public class JoinListener implements Listener
     {
         Player player = event.getPlayer();
 
-        GUICreator.giveJoinItems(player);
+        player.getInventory().clear();
+        player.getInventory().setArmorContents(null);
+
+        JoinItems.giveJoinItems(player);
     }
 }

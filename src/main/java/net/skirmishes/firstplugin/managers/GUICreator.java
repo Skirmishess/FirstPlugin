@@ -64,21 +64,4 @@ public class GUICreator
         }
         player.openInventory(inventoryGUI);
     }
-
-    public static void giveJoinItems(Player player)
-    {
-        for (String configID : Core.plugin.itemjoinFile.getConfigurationSection("Items").getKeys(false))
-        {
-            if (configID.equalsIgnoreCase("BORDER")) continue;
-            ItemBuilder itemBuilder = new ItemBuilder(Core.plugin.getMaterialByName(Core.plugin.itemjoinFile.getString("Items."+configID+".Material")), 1,
-                    Core.plugin.itemjoinFile.getInt("Items."+configID+".Damage"));
-            itemBuilder.setName(Core.plugin.itemjoinFile.getString("Items."+configID+".Display"));
-            itemBuilder.addItemFlag(ItemFlag.HIDE_ATTRIBUTES);
-            itemBuilder.addLore(Core.plugin.itemjoinFile.getStringList("Items."+configID+".Lore"));
-            if (configID.equals("1")) itemBuilder.setNBTBoolean("isServerSelector", true);
-            if (configID.equals("2")) itemBuilder.setNBTBoolean("isCosmtics", true);
-
-            player.getInventory().setItem(Core.plugin.itemjoinFile.getInt("Items."+configID+".Slot"), itemBuilder.toNBTItemStack());
-        }
-    }
 }

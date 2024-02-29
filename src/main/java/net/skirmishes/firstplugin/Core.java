@@ -1,9 +1,7 @@
 package net.skirmishes.firstplugin;
 
 import net.skirmishes.firstplugin.commands.FirstPluginCommand;
-import net.skirmishes.firstplugin.listeners.InventoryListener;
-import net.skirmishes.firstplugin.listeners.JoinListener;
-import net.skirmishes.firstplugin.listeners.PlayerChatListener;
+import net.skirmishes.firstplugin.listeners.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -22,7 +20,8 @@ public final class Core extends JavaPlugin {
     public static Core plugin;
     public File configYml = new File(getDataFolder() +"config.yml"); public FileConfiguration configFile = YamlConfiguration.loadConfiguration(this.configYml);
 
-    public File itemjoinYml = new File(getDataFolder() +"itemjoin.yml"); public FileConfiguration itemjoinFile = YamlConfiguration.loadConfiguration(this.itemjoinYml);
+    public File itemJoinYml = new File(getDataFolder() +"itemjoin.yml"); public FileConfiguration itemJoinFile = YamlConfiguration.loadConfiguration(this.itemJoinYml);
+    public File selectorYml = new File(getDataFolder() +"selector.yml"); public FileConfiguration selectorFile = YamlConfiguration.loadConfiguration(this.selectorYml);
     public File langYml = new File(getDataFolder() +"lang.yml"); public FileConfiguration langFile = YamlConfiguration.loadConfiguration(this.langYml);
     public Inventory inventory;
     @Override
@@ -30,11 +29,16 @@ public final class Core extends JavaPlugin {
     {
         plugin = this;
         loadConfigs();
-        Bukkit.getConsoleSender().sendMessage(cc(langFile.getString("Prefix")+" &aEnabled FirstPlugin by skirmishes."));
+
         this.getServer().getPluginManager().registerEvents(new PlayerChatListener(), this);
+        this.getServer().getPluginManager().registerEvents(new GUIInventoryListener(), this);
         this.getServer().getPluginManager().registerEvents(new InventoryListener(), this);
+        this.getServer().getPluginManager().registerEvents(new SelectorInventoryListener(), this);
         this.getServer().getPluginManager().registerEvents(new JoinListener(), this);
+
         this.getCommand("firstplugin").setExecutor(new FirstPluginCommand());
+
+        Bukkit.getConsoleSender().sendMessage(cc(langFile.getString("Prefix")+" &aEnabled FirstPlugin by skirmishes."));
 
     }
 
@@ -63,12 +67,12 @@ public final class Core extends JavaPlugin {
                 Bukkit.getConsoleSender().sendMessage(cc(" &8- &bCreated new config.yml in plugins folder."));
             }
 
-            itemjoinYml = new File(getDataFolder() +"/itemjoin.yml");
-            if (!itemjoinYml.exists()) {
-                itemjoinFile.save(getDataFolder() +"/itemjoin.yml");
+            itemJoinYml = new File(getDataFolder() +"/itemjoin.yml");
+            if (!itemJoinYml.exists()) {
+                itemJoinFile.save(getDataFolder() +"/itemjoin.yml");
 
                 InputStream inputStream = this.getResource("itemjoin.yml");
-                OutputStream outputStream = Files.newOutputStream(itemjoinYml.toPath());
+                OutputStream outputStream = Files.newOutputStream(itemJoinYml.toPath());
 
                 int read = 0;
                 byte[] bytes = new byte[1024];
@@ -77,6 +81,22 @@ public final class Core extends JavaPlugin {
                     outputStream.write(bytes, 0, read);
                 }
                 Bukkit.getConsoleSender().sendMessage(cc(" &8- &bCreated new itemjoin.yml in plugins folder."));
+            }
+
+            selectorYml = new File(getDataFolder() +"/selector.yml");
+            if (!selectorYml.exists()) {
+                selectorFile.save(getDataFolder() +"/selector.yml");
+
+                InputStream inputStream = this.getResource("selector.yml");
+                OutputStream outputStream = Files.newOutputStream(selectorYml.toPath());
+
+                int read = 0;
+                byte[] bytes = new byte[1024];
+
+                while ((read = inputStream.read(bytes)) != -1) {
+                    outputStream.write(bytes, 0, read);
+                }
+                Bukkit.getConsoleSender().sendMessage(cc(" &8- &bCreated new selector.yml in plugins folder."));
             }
 
             langYml = new File(getDataFolder() +"/lang.yml");
@@ -103,13 +123,15 @@ public final class Core extends JavaPlugin {
         }
 
         this.configFile = YamlConfiguration.loadConfiguration(this.configYml);
-        this.itemjoinFile = YamlConfiguration.loadConfiguration(this.itemjoinYml);
+        this.itemJoinFile = YamlConfiguration.loadConfiguration(this.itemJoinYml);
+        this.selectorFile = YamlConfiguration.loadConfiguration(this.selectorYml);
         this.langFile = YamlConfiguration.loadConfiguration(this.langYml);
     }
     public void reloadConfigs()
     {
         this.configFile = YamlConfiguration.loadConfiguration(this.configYml);
-        this.itemjoinFile = YamlConfiguration.loadConfiguration(this.itemjoinYml);
+        this.itemJoinFile = YamlConfiguration.loadConfiguration(this.itemJoinYml);
+        this.selectorFile = YamlConfiguration.loadConfiguration(this.selectorYml);
         this.langFile = YamlConfiguration.loadConfiguration(this.langYml);
     }
     public static Material getMaterialByName(String name) {
